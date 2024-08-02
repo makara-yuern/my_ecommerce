@@ -13,16 +13,16 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'email'    => 'admin@tracking.fc2.com',
+            'email'    => 'admin@ecommerce.com',
             'is_admin' => true,
         ]);
 
         User::factory()->create([
-            'email' => 'user01@tracking.fc2.com',
+            'email' => 'user01@ecommerce.com',
         ]);
 
         User::factory()->create([
-            'email' => 'user02@tracking.fc2.com',
+            'email' => 'user02@ecommerce.com',
         ]);
     }
 }

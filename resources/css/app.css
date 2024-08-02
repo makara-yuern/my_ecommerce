@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sidebar {
+    width: 200px;
+    a {
+        white-space: nowrap;
+    }
+
+    &.minimize {
+        width: 64px;
+        a {
+            white-space: nowrap;
+            span {
+                display: none;
+            }
+        }
+    }
+}
+
+.select2-container--default .select2-selection--single {
+    height: 40px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 6px 15px;
+    font-size: 14px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 27px;
+    margin-top: -2%;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 40px;
+    right: 10px;
+    margin-top: 8px;
+}
+
+.select2-container--default .select2-results__option {
+    padding: 10px;
+}
+
+.select2-container .select2-search--dropdown .select2-search__field {
+    margin: 10px;
+    width: 93%;
+    padding: 7px;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.select-user-country .select2-selection--single{
+    padding: 20px;
+}
+
+.select-user-type .select2-selection--single{
+    padding: 20px;
+}
+
+/* Toggle styles */
+.toggle-checkbox:checked + .toggle-label .toggle-thumb {
+    transform: translateX(100%);
+}
+
+.toggle-checkbox:checked + .toggle-label > span:first-child {
+    background-color: #68D391; /* Tailwind color for green-400 */
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-thumb {
+    background-color: white;
+}
