@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#suggestions {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+    border-radius: 4px;
+}
+
+#suggestions a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+#suggestions a:hover {
+    background-color: #f7f7f7;
+}
+
+#suggestions img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#suggestions span {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+}
