@@ -7,7 +7,10 @@
     <x-hero />
 
     <!-- Categories Section -->
-    <x-categories />
+    <x-categories :categories="$categories"/>
+
+    <!-- New Arrivals Section -->
+    <x-new-arrivals :newArrivals="$newArrivals"/>
 
     <!-- Featured Products Section -->
     <x-featured-products :featuredProducts="$featuredProducts"/>

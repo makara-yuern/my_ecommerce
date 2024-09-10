@@ -7,7 +7,7 @@
         <div class="bg-white shadow-md rounded-lg p-6">
             <!-- User information can be displayed here -->
             <div class="flex items-center mb-4">
-                <img src="{{ Auth::user()->avatar }}" alt="User Avatar" class="h-16 w-16 rounded-full border-2 border-gray-200 mr-4">
+                <img src="{{ Auth::user()->avatar_image }}" alt="User Avatar" class="h-16 w-16 rounded-full border-2 border-gray-200 mr-4">
                 <div>
                     <h2 class="text-2xl font-semibold">{{ Auth::user()->name }}</h2>
                     <p class="text-gray-600">{{ Auth::user()->email }}</p>

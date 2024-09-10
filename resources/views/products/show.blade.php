@@ -24,16 +24,19 @@
                 <!-- Stock Info -->
                 <p class="mt-2 text-sm text-gray-500">
                     @if($product->stock > 0)
-                        In Stock ({{ $product->stock }} available)
+                    In Stock ({{ $product->stock }} available)
                     @else
-                        <span class="text-red-500">Out of Stock</span>
+                    <span class="text-red-500">Out of Stock</span>
                     @endif
                 </p>
 
                 <!-- Add to Cart Button -->
                 <div class="mt-8">
-                    <button id="add-to-cart-btn" class="w-auto p-2 lg:w-auto bg-pink-500 hover:bg-pink-600 text-white py-2 px-6 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center space-x-2">
-                        <span>Add to Cart</span>
+                    <button
+                        class="add-to-cart mt-4 bg-pink-500 text-white w-full py-2 px-4 rounded-lg hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 transition-colors duration-200"
+                        data-product-id="{{ $product->id }}"
+                        data-quantity="1">
+                        Add to Cart
                     </button>
                     <span id="cart-success-message" class="hidden mt-4 text-green-600 font-semibold">Item added to cart successfully!</span>
                 </div>

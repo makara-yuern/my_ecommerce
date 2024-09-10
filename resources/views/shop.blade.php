@@ -17,7 +17,6 @@
                 <h2 class="text-xl font-semibold mb-2">Product Name</h2>
                 <p class="text-gray-600 mb-2">Product description goes here. Brief details about the product features and benefits.</p>
                 <span class="text-lg font-bold text-pink-600">$49.99</span>
-                <a href="#" class="mt-4 inline-block px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700">Add to Cart</a>
             </div>
             <!-- Repeat Product Card as needed -->
         </div>

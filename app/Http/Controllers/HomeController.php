@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -24,11 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Fetch featured products from the database
         $featuredProducts = Product::paginate(20);
+        $categories = Category::orderBy('id', 'asc')->limit(3)->get();
+        $newArrivals = Product::orderBy('id', 'desc')->limit(8)->get();
 
-        // Pass the products to the view
-        return view('home', compact('featuredProducts'));
+        return view('home', [
+            'featuredProducts' => $featuredProducts,
+            'categories' => $categories,
+            'newArrivals' => $newArrivals
+        ]);
     }
 
     /**

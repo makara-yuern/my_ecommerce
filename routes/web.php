@@ -15,6 +15,8 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/load-more', [HomeController::class, 'loadMore'])->name('load.more');
@@ -51,6 +53,19 @@ Route::get('password/confirm', [ConfirmPasswordController::class, 'showConfirmFo
 Route::post('password/confirm', [ConfirmPasswordController::class, 'confirm']);
 
 // For user profile
-Route::middleware(['auth'])->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
+    // Cart Routes
+    Route::prefix('cart')->group(function() {
+        Route::get('/', [CartController::class, 'index'])->name('cart.index');
+        Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+        Route::delete('/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    });
+
+    // Order Routes
+    Route::prefix('orders')->group(function() {
+        Route::post('/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
+        Route::post('/orders/{order}/payment', [OrderController::class, 'processPayment'])->name('orders.payment');
+        Route::get('/{id}', [OrderController::class, 'show'])->name('orders.show');
+    });
 });

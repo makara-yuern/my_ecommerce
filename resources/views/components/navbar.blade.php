@@ -15,13 +15,23 @@
 
         <!-- Search Bar -->
         <div class="hidden md:flex flex-grow justify-center relative">
-            <form action="{{ route('search') }}" method="GET" class="relative w-full max-w-md">
+            <form action="{{ route('search') }}" method="GET" class="relative w-full max-w-xl">
                 <div class="flex">
-                    <input type="text" name="query" id="search-input" placeholder="Search products..." class="px-4 py-2 border border-gray-300 rounded-l-md w-full focus:outline-none focus:ring-2 focus:ring-pink-500" autocomplete="off">
+                    <input type="text" name="query" id="search-input" placeholder="Search products..." class="px-4 py-2 border border-gray-300 rounded-l-md w-full focus:outline-none focus:ring-2 focus:ring-pink-500 pr-16" autocomplete="off">
                     <button type="submit" class="px-4 py-2 bg-pink-500 text-white rounded-r-md hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500">Search</button>
                 </div>
                 <div id="suggestions" class="absolute left-0 right-0 top-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg z-10 hidden"></div>
             </form>
+        </div>
+
+        <!-- View Cart -->
+        <div class="relative md:flex items-center mr-8 space-x-4 hidden">
+            <a href="{{ route('cart.index') }}" class="text-gray-700 hover:text-pink-600 transition-colors flex items-center space-x-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.5 2h11l.5-2h2m-1 10H7m10 0H7m4 4h6v-2H11m-8 0h8M4 6h16l-2 12H6L4 6z"></path>
+                </svg>
+                <span>Cart</span>
+            </a>
         </div>
 
         <!-- User Login / Profile -->

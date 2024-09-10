@@ -1,22 +1,18 @@
-<div class="py-12">
+@php
+    $categories = $categories ?? collect();
+    $categoriesCount = $categories->count();
+@endphp
+
+<div id="categories" class="py-12">
     <div class="max-w-7xl mx-auto text-center">
         <h2 class="text-2xl font-bold">Shop by Category</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-            <!-- Category 1 -->
+        <div id="categories-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+            @foreach ($categories as $category) <!-- Corrected line -->
             <div class="bg-white rounded-lg shadow-md p-6">
-                <img src="https://via.placeholder.com/150" alt="Category" class="w-full h-48 object-cover rounded">
-                <h3 class="mt-4 font-bold text-lg">Men's Clothing</h3>
+                <img src="{{ $category->image ?: 'https://via.placeholder.com/150' }}" alt="{{ $category->name }}" class="w-full h-48 object-cover rounded">
+                <h3 class="mt-4 font-bold text-lg">{{ $category->name }}</h3>
             </div>
-            <!-- Category 2 -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <img src="https://via.placeholder.com/150" alt="Category" class="w-full h-48 object-cover rounded">
-                <h3 class="mt-4 font-bold text-lg">Women's Clothing</h3>
-            </div>
-            <!-- Category 3 -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <img src="https://via.placeholder.com/150" alt="Category" class="w-full h-48 object-cover rounded">
-                <h3 class="mt-4 font-bold text-lg">Accessories</h3>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
