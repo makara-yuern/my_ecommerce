@@ -11,7 +11,7 @@
                     <p class="mt-2 text-pink-600 font-semibold">{{ $product->price }}</p>
                 </a>
                 <button
-                    class="add-to-cart mt-4 bg-pink-500 text-white w-full py-2 px-4 rounded-lg hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 transition-colors duration-200"
+                    class="add-to-cart-button mt-4 bg-pink-500 text-white w-full py-2 px-4 rounded-lg hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 transition-colors duration-200"
                     data-product-id="{{ $product->id }}"
                     data-quantity="1">
                     Add to Cart

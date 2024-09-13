@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/js/cart.js',
                 'resources/js/page.js',
                 'resources/js/search.js',
+                'resources/js/slider.js',
             ],
             refresh: true,
         }),

@@ -16,6 +16,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -24,6 +25,8 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/products/category/{category}', [ProductController::class, 'showByCategory'])->name('products.by-category');
+Route::get('/categories/load-more', [CategoryController::class, 'loadMore'])->name('categories.load-more');
 Route::get('/search/suggestions', [SearchController::class, 'suggestions']);
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');

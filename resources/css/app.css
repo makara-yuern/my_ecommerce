@@ -36,3 +36,38 @@
     font-size: 16px;
     color: #333;
 }
+
+.product img {
+    transition: transform 0.3s ease;
+}
+
+.product img:hover {
+    transform: scale(1.1);
+}
+
+
+#image-slider {
+    position: relative;
+    overflow: hidden;
+    height: 500px; /* Adjust this height as needed */
+}
+
+#image-slider .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 1s ease-in-out;
+    background-size: cover; /* Ensures the image covers the entire element */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#image-slider .slide.hidden {
+    opacity: 0;
+}
+
+#image-slider .slide.active {
+    opacity: 1;
+}

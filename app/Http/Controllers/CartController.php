@@ -24,13 +24,13 @@ class CartController extends Controller
         ]);
 
         $quantity = $request->input('quantity');
-        $user = auth()->user();
+        $user = Auth::user();
 
         $cart = Cart::firstOrCreate(['user_id' => $user->id]);
 
         $cartItem = CartItem::where('cart_id', $cart->id)
-                            ->where('product_id', $productId)
-                            ->first();
+            ->where('product_id', $productId)
+            ->first();
 
         if ($cartItem) {
             $cartItem->quantity += $quantity;
@@ -48,7 +48,12 @@ class CartController extends Controller
 
     public function remove($id)
     {
-        CartItem::findOrFail($id)->delete();
-        return redirect()->route('cart.index');
+        try {
+            $cartItem = CartItem::findOrFail($id);
+            $cartItem->delete();
+            return redirect()->route('cart.index');
+        } catch (\Exception $e) {
+            return redirect()->route('cart.index')->with('error', 'Unable to remove item from cart.');
+        }
     }
 }

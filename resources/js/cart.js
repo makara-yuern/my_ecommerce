@@ -1,9 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', () => {
-            const productId = button.dataset.productId;
-            const quantity = button.dataset.quantity;
-            console.log('hello, productId: ' + productId + ' quantity', quantity);            
+document.addEventListener('DOMContentLoaded', function() {
+    const addToCartButton = document.getElementById('add-to-cart-button');
+
+    if (addToCartButton) {
+        addToCartButton.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            let productId = this.getAttribute('data-product-id');
+            let quantity = document.getElementById('quantity').value;
 
             fetch(`/cart/cart/add/${productId}`, {
                 method: 'POST',
@@ -11,15 +14,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 },
-                body: JSON.stringify({ quantity })
+                body: JSON.stringify({
+                    quantity: quantity
+                })
             })
             .then(response => response.json())
             .then(data => {
-                alert(data.message);
+                if (data.message) {
+                    const dynamicAlert = document.getElementById('dynamic-alert');
+                    const dynamicAlertMessage = document.getElementById('dynamic-alert-message');
+
+                    dynamicAlertMessage.innerText = data.message;
+                    dynamicAlert.classList.remove('hidden');
+                    
+                    setTimeout(() => {
+                        dynamicAlert.classList.add('hidden');
+                    }, 3000);
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
             });
         });
-    });
+    }
 });

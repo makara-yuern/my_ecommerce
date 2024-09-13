@@ -18,7 +18,7 @@ class OrderSeeder extends Seeder
 
         foreach (range(1, 20) as $index) {
             Order::create([
-                'user_id' => $faker->numberBetween(1, 10), // Adjust based on number of users
+                'user_id' => $faker->numberBetween(1, 10),
                 'total_amount' => $faker->randomFloat(2, 20, 500),
                 'status' => $faker->randomElement(['pending', 'completed', 'shipped']),
             ]);

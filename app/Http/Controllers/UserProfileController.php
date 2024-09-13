@@ -8,7 +8,6 @@ class UserProfileController extends Controller
 {
     public function index()
     {
-        // Logic for the user profile page
         return view('profile');
     }
 }

@@ -30,16 +30,13 @@ class SearchController extends Controller
 
     public function suggestions(Request $request)
     {
-        // Get the search query
         $query = $request->input('query');
 
-        // Fetch products that match the search query (limit to 5 for suggestions)
         $suggestions = Product::where('name', 'like', "%{$query}%")
             ->orWhere('description', 'like', "%{$query}%")
             ->limit(5)
             ->get(['id', 'name', 'image']);
 
-        // Return suggestions as JSON
         return response()->json($suggestions);
     }
 }

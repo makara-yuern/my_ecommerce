@@ -44,7 +44,6 @@ class HomeController extends Controller
      */
     public function loadMore(Request $request)
     {
-        // Fetch paginated products based on the requested page
         $products = Product::paginate(20, ['*'], 'page', $request->page);
 
         return response()->json($products);

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`/load-more?page=${page}`)
             .then(response => response.json())
             .then(data => {
-                const products = data.data; // products array
+                const products = data.data;
                 const container = document.querySelector('#featured-products .grid');
                 const loadMoreContainer = document.getElementById('load-more-container');
 
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <p class="mt-2 text-pink-600 font-semibold">${product.price}</p>
                             </a>
                             <button
-                                class="add-to-cart mt-4 bg-pink-500 text-white w-full py-2 px-4 rounded-lg hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 transition-colors duration-200"
+                                class="add-to-cart-button mt-4 bg-pink-500 text-white w-full py-2 px-4 rounded-lg hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 transition-colors duration-200"
                                 data-product-id="${product.id}"
                                 data-quantity="1">
                                 Add to Cart
@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         container.appendChild(productDiv);
                     });
 
-                    // Reattach event listeners to newly added "Add to Cart" buttons
                     attachAddToCartEventListeners();
                 } else {
                     loadMoreContainer.innerHTML = '<p>No more products to load.</p>';
@@ -46,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function attachAddToCartEventListeners() {
-        document.querySelectorAll('.add-to-cart').forEach(button => {
+        document.querySelectorAll('.add-to-cart-button').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = button.dataset.productId;
                 const quantity = button.dataset.quantity;
@@ -61,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    // Display success message
                     const successMessage = document.getElementById('success-message');
                     if (successMessage) {
                         successMessage.textContent = data.message;
@@ -74,6 +72,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Attach event listeners to existing "Add to Cart" buttons on initial load
     attachAddToCartEventListeners();
 });

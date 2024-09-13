@@ -11,6 +11,8 @@
     @vite('resources/js/cart.js')
     @vite('resources/js/page.js')
     @vite('resources/js/search.js')
+    @vite('resources/js/slider.js')
+    @vite('resources/js/category.js')
 </head>
 <body class="bg-gray-100">
     <!-- Navbar -->
@@ -18,6 +20,10 @@
 
     <!-- Alert messages -->
     <div class="container mx-auto px-4 mt-6">
+        <div id="dynamic-alert" class="hidden bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+            <p id="dynamic-alert-message"></p>
+        </div>
+
         @if(session('success'))
             <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
                 <p>{{ session('success') }}</p>
