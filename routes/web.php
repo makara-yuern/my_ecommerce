@@ -26,6 +26,7 @@ Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/products/category/{category}', [ProductController::class, 'showByCategory'])->name('products.by-category');
+Route::get('/categories', [CategoryController::class, 'allCategories'])->name('categories.all');
 Route::get('/categories/load-more', [CategoryController::class, 'loadMore'])->name('categories.load-more');
 Route::get('/search/suggestions', [SearchController::class, 'suggestions']);
 Route::get('/about', [AboutController::class, 'index'])->name('about');

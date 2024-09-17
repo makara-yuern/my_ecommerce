@@ -3,7 +3,7 @@
 @section('title', 'Cart')
 
 @section('content')
-<div class="py-12 bg-gray-100">
+<div class="py-10">
     <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6">
         <h2 class="text-3xl font-extrabold text-gray-800 text-center">Your Cart</h2>
 

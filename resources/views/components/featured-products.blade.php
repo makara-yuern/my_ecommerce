@@ -1,6 +1,7 @@
-<div id="featured-products" class="py-12">
+<div id="featured-products" class="py-10">
     <div class="max-w-7xl mx-auto text-center">
         <h2 class="text-2xl font-bold">Featured Products</h2>
+        <p class="mt-2 text-lg text-gray-600">Check out some of our top picks just for you</p>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mt-8">
             @foreach($featuredProducts as $product)
             <div class="product bg-white rounded-lg shadow-md p-6" data-id="{{ $product->id }}">

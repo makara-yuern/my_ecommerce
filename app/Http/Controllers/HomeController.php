@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $featuredProducts = Product::paginate(20);
-        $categories = Category::orderBy('id', 'asc')->limit(3)->get();
+        $categories = Category::orderBy('id', 'asc')->limit(4)->get();
         $newArrivals = Product::orderBy('id', 'desc')->limit(8)->get();
 
         return view('home', [

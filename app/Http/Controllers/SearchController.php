@@ -22,7 +22,6 @@ class SearchController extends Controller
         $query = $request->input('query');
 
         $products = Product::where('name', 'like', "%{$query}%")
-            ->orWhere('description', 'like', "%{$query}%")
             ->paginate(20);
 
         return view('components.search-results', compact('products', 'query'));
@@ -33,7 +32,6 @@ class SearchController extends Controller
         $query = $request->input('query');
 
         $suggestions = Product::where('name', 'like', "%{$query}%")
-            ->orWhere('description', 'like', "%{$query}%")
             ->limit(5)
             ->get(['id', 'name', 'image']);
 
