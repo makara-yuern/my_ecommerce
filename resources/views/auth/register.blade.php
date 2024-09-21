@@ -9,7 +9,7 @@
             <!-- Name -->
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
+                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
                 @error('name')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
@@ -18,7 +18,7 @@
             <!-- Email -->
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input id="email" type="email" name="email" value="{{ old('email') }}" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
                 @error('email')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
@@ -27,7 +27,7 @@
             <!-- Password -->
             <div class="mb-4">
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input id="password" type="password" name="password" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
+                <input id="password" type="password" name="password" required class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
                 @error('password')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
@@ -36,17 +36,17 @@
             <!-- Confirm Password -->
             <div class="mb-4">
                 <label for="password-confirm" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                <input id="password-confirm" type="password" name="password_confirmation" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
+                <input id="password-confirm" type="password" name="password_confirmation" required class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
             </div>
 
             <!-- Map and Address -->
             <div class="mb-4">
                 <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-                <input id="address" type="text" name="address" value="{{ old('address') }}" required readonly class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
+                <input id="address" type="text" name="address" value="{{ old('address') }}" required readonly class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
             </div>
 
             <!-- Map Container -->
-            <div id="map" class="h-64 w-full mb-4 rounded-md border-gray-300 shadow-sm"></div>
+            <div id="map" class="h-64 w-full mb-4 rounded-md border border-gray-300 shadow-sm"></div>
 
             <!-- Hidden Latitude and Longitude -->
             <input type="hidden" id="latitude" name="latitude">
