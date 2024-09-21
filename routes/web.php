@@ -64,6 +64,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('cart.index');
         Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
         Route::delete('/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+        Route::get('/cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
     });
 
     // Order Routes

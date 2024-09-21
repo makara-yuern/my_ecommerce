@@ -24,6 +24,9 @@
             </form>
         </div>
 
+        @php
+            $cartCount = (new \App\Http\Controllers\CartController())->getCartCount();
+        @endphp
         <!-- View Cart -->
         <div class="relative md:flex items-center mr-8 space-x-4 hidden">
             <a href="{{ route('cart.index') }}" class="text-gray-700 hover:text-pink-600 transition-colors flex items-center space-x-2" aria-label="View Cart">
@@ -31,6 +34,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.5 2h11l.5-2h2m-1 10H7m10 0H7m4 4h6v-2H11m-8 0h8M4 6h16l-2 12H6L4 6z"></path>
                 </svg>
                 <span>Cart</span>
+                <span id="cart-count" class="ml-2 bg-red-500 text-white rounded-full px-2 text-xs">{{ auth()->check() ? $cartCount : 0 }}</span>
             </a>
         </div>
 

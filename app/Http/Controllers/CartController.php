@@ -19,13 +19,9 @@ class CartController extends Controller
 
     public function add(Request $request, $productId)
     {
-        $request->validate([
-            'quantity' => 'required|integer|min:1'
-        ]);
-
+        $request->validate(['quantity' => 'required|integer|min:1']);
         $quantity = $request->input('quantity');
         $user = Auth::user();
-
         $cart = Cart::firstOrCreate(['user_id' => $user->id]);
 
         $cartItem = CartItem::where('cart_id', $cart->id)
@@ -43,7 +39,7 @@ class CartController extends Controller
             ]);
         }
 
-        return response()->json(['message' => 'Product added to cart']);
+        return response()->json(['message' => 'Product added to cart', 'cartCount' => $this->getCartCount()]);
     }
 
     public function remove($id)
@@ -55,5 +51,11 @@ class CartController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('cart.index')->with('error', 'Unable to remove item from cart.');
         }
+    }
+
+    public static function getCartCount()
+    {
+        $cart = Cart::where('user_id', Auth::id())->first();
+        return $cart ? $cart->items()->count() : 0;
     }
 }
