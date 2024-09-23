@@ -58,7 +58,10 @@ Route::post('password/confirm', [ConfirmPasswordController::class, 'confirm']);
 
 // For user profile
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
+    Route::get('/profile', [UserProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [UserProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/update-password', [UserProfileController::class, 'updatePassword'])->name('profile.update.password');
     // Cart Routes
     Route::prefix('cart')->group(function() {
         Route::get('/', [CartController::class, 'index'])->name('cart.index');

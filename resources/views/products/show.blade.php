@@ -71,55 +71,102 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    let mainImageElement = document.getElementById('main-product-image');
-    let currentMainImageSrc = mainImageElement.src;
-    let currentMainType = 'product';
-    let currentMainId = mainImageElement.parentElement.getAttribute('data-id');
+        // Add to Cart functionality
+        const addToCartButton = document.getElementById('add-to-cart-button');
 
-    document.querySelectorAll('.variant-option').forEach(function(variant) {
-        variant.addEventListener('click', function() {
-            const clickedType = this.getAttribute('data-type');
-            const clickedId = this.getAttribute('data-id');
-            const clickedImageUrl = this.querySelector('img').getAttribute('src');
-            const description = this.getAttribute('data-description');
+        addToCartButton.addEventListener('click', function(e) {
+            e.preventDefault();
 
-            if (clickedId !== currentMainId) {
-                this.querySelector('img').setAttribute('src', currentMainImageSrc);
-                mainImageElement.setAttribute('src', clickedImageUrl);
+            const productId = this.getAttribute('data-product-id');
+            const quantity = document.getElementById('quantity').value;
 
-                this.setAttribute('data-id', currentMainId);
-                this.setAttribute('data-type', currentMainType);
-                mainImageElement.parentElement.setAttribute('data-id', clickedId);
-                mainImageElement.parentElement.setAttribute('data-type', clickedType);
+            // Disable the button to prevent multiple clicks
+            this.disabled = true;
 
-                if (clickedType === 'variant') {
-                    const price = this.getAttribute('data-price');
-                    const stock = this.getAttribute('data-stock');
-                    const name = this.getAttribute('data-name');
-                    const color = this.getAttribute('data-color');
+            fetch(`/cart/cart/add/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ quantity: quantity })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    const dynamicAlert = document.getElementById('dynamic-alert');
+                    const dynamicAlertMessage = document.getElementById('dynamic-alert-message');
 
-                    document.getElementById('product-name').innerText = name + ' (' + color + ')';
-                    document.getElementById('product-price').innerText = parseFloat(price).toFixed(2) + ' USD';
-                    document.getElementById('product-stock').innerText = stock > 0 ? `In Stock (${stock} available)` : 'Out of Stock';
-                    document.getElementById('product-description').innerText = description;
-                    document.getElementById('quantity').max = stock;
+                    dynamicAlertMessage.innerText = data.message;
+                    dynamicAlert.classList.remove('hidden');
+                    
+                    // Update cart count
+                    document.getElementById('cart-count').innerText = data.cartCount;
 
-                    currentMainType = 'variant';
-                } else {
-                    document.getElementById('product-name').innerText = "{{ $product->name }}";
-                    document.getElementById('product-price').innerText = "{{ number_format($product->price, 2) }} USD";
-                    document.getElementById('product-stock').innerText = "{{ $product->stock > 0 ? 'In Stock (' . $product->stock . ' available)' : 'Out of Stock' }}";
-                    document.getElementById('product-description').innerText = "{{ $product->description }}";
-                    document.getElementById('quantity').max = "{{ $product->stock }}";
-
-                    currentMainType = 'product';
+                    setTimeout(() => {
+                        dynamicAlert.classList.add('hidden');
+                    }, 3000);
                 }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // Re-enable the button after the request completes
+                this.disabled = false;
+            });
+        });
 
-                currentMainImageSrc = clickedImageUrl;
-                currentMainId = clickedId;
-            }
+        // Variant selection functionality
+        let mainImageElement = document.getElementById('main-product-image');
+        let currentMainImageSrc = mainImageElement.src;
+        let currentMainType = 'product';
+        let currentMainId = mainImageElement.parentElement.getAttribute('data-id');
+
+        document.querySelectorAll('.variant-option').forEach(function(variant) {
+            variant.addEventListener('click', function() {
+                const clickedType = this.getAttribute('data-type');
+                const clickedId = this.getAttribute('data-id');
+                const clickedImageUrl = this.querySelector('img').getAttribute('src');
+                const description = this.getAttribute('data-description');
+
+                if (clickedId !== currentMainId) {
+                    this.querySelector('img').setAttribute('src', currentMainImageSrc);
+                    mainImageElement.setAttribute('src', clickedImageUrl);
+
+                    this.setAttribute('data-id', currentMainId);
+                    this.setAttribute('data-type', currentMainType);
+                    mainImageElement.parentElement.setAttribute('data-id', clickedId);
+                    mainImageElement.parentElement.setAttribute('data-type', clickedType);
+
+                    if (clickedType === 'variant') {
+                        const price = this.getAttribute('data-price');
+                        const stock = this.getAttribute('data-stock');
+                        const name = this.getAttribute('data-name');
+                        const color = this.getAttribute('data-color');
+
+                        document.getElementById('product-name').innerText = name + ' (' + color + ')';
+                        document.getElementById('product-price').innerText = parseFloat(price).toFixed(2) + ' USD';
+                        document.getElementById('product-stock').innerText = stock > 0 ? `In Stock (${stock} available)` : 'Out of Stock';
+                        document.getElementById('product-description').innerText = description;
+                        document.getElementById('quantity').max = stock;
+
+                        currentMainType = 'variant';
+                    } else {
+                        document.getElementById('product-name').innerText = "{{ $product->name }}";
+                        document.getElementById('product-price').innerText = "{{ number_format($product->price, 2) }} USD";
+                        document.getElementById('product-stock').innerText = "{{ $product->stock > 0 ? 'In Stock (' . $product->stock . ' available)' : 'Out of Stock' }}";
+                        document.getElementById('product-description').innerText = "{{ $product->description }}";
+                        document.getElementById('quantity').max = "{{ $product->stock }}";
+
+                        currentMainType = 'product';
+                    }
+
+                    currentMainImageSrc = clickedImageUrl;
+                    currentMainId = clickedId;
+                }
+            });
         });
     });
-});
 </script>
 @endsection

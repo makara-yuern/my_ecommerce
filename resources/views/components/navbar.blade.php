@@ -52,7 +52,7 @@
                     </svg>
                 </button>
                 <div id="user-menu" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden z-20 hidden">
-                    <a href="{{ route('profile') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" aria-label="Profile">Profile</a>
+                    <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" aria-label="Profile">Profile</a>
                     <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" aria-label="Logout">Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -83,7 +83,7 @@
             <a href="{{ route('login') }}" class="py-2 text-gray-700 hover:text-pink-600 text-lg" aria-label="Login">Login</a>
             <a href="{{ route('register') }}" class="py-2 text-gray-700 hover:text-pink-600 text-lg" aria-label="Register">Register</a>
             @else
-            <a href="{{ route('profile') }}" class="py-2 text-gray-700 hover:text-pink-600 text-lg" aria-label="Profile">Profile</a>
+            <a href="{{ route('profile.show') }}" class="py-2 text-gray-700 hover:text-pink-600 text-lg" aria-label="Profile">Profile</a>
             <a href="#" class="py-2 text-gray-700 hover:text-pink-600 text-lg" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" aria-label="Logout">Logout</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
